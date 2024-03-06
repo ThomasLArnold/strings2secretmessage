@@ -1,0 +1,137 @@
+<!-- Thomas Arnold -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the webpage -->
+    <title>Palindrome Checker</title>
+    <!-- CSS styling -->
+    <style>
+        /* Styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background: linear-gradient(120deg, #ff0000, #ffffff, #00ff00);
+            background-size: 600% 100%;
+            animation: gradient 8s linear infinite;
+        }
+        /* Animation keyframes for gradient background */
+        @keyframes gradient {
+            0% { background-position: 0% }
+            100% { background-position: 100% }
+        }
+        /* Styling for the h1 element */
+        h1 {
+            color: #333;
+        }
+        /* Styling for the container div */
+        #container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        }
+        /* Styling for text input fields */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        /* Styling for buttons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Styling for button hover state */
+        button:hover {
+            background-color: #45a049;
+        }
+        /* Styling for the result div */
+        .result {
+            margin-top: 20px;
+        }
+        /* Styling for result message */
+        .result p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container for the content -->
+    <div id="container">
+        <!-- Heading for the palindrome checker -->
+        <h1>Palindrome Checker</h1>
+        <!-- Prompt for user input -->
+        <p>Enter a word or phrase to check if it's a palindrome:</p>
+        <!-- Input field for the word or phrase -->
+        <input type="text" id="inputString">
+        <!-- Button to trigger palindrome check -->
+        <button onclick="checkPalindrome()">Check</button>
+        <!-- Result message displayed here -->
+        <div class="result" id="result"></div>
+
+        <!-- Additional inputs for user's first and last names, and zip code -->
+        <p>Enter your first name:</p>
+        <input type="text" id="firstName">
+        <p>Enter your last name:</p>
+        <input type="text" id="lastName">
+        <p>Enter your zip code:</p>
+        <input type="text" id="zipCode">
+    </div>
+
+    <!-- JavaScript for palindrome checking and input validation -->
+    <script>
+        // Function to check if a string is a palindrome
+        function checkPalindrome() {
+            // Get the input string, convert to lowercase, and remove whitespace
+            var inputString = document.getElementById('inputString').value.toLowerCase().replace(/\s/g, '');
+            // Reverse the input string
+            var reversedString = inputString.split('').reverse().join('');
+            // Get the result div
+            var resultDiv = document.getElementById('result');
+
+            // Check if the input string is equal to its reversed version
+            if (inputString === reversedString) {
+                // If palindrome, display a message
+                resultDiv.innerHTML = '<p>' + inputString + ' is a palindrome!</p>';
+            } else {
+                // If not a palindrome, display a message
+                resultDiv.innerHTML = '<p>' + inputString + ' is not a palindrome.</p>';
+            }
+
+            // Additional input validation for first name, last name, and zip code
+            var firstName = document.getElementById('firstName').value.trim();
+            var lastName = document.getElementById('lastName').value.trim();
+            var fullName = firstName + ' ' + lastName;
+            var zipCode = document.getElementById('zipCode').value.trim();
+
+            // Check if the full name has more than 20 characters
+            if (fullName.length > 20) {
+                alert('Full name should not exceed 20 characters.');
+                return; // Stop further execution
+            }
+
+            // Check if the zip code is not exactly 5 digits
+            if (zipCode.length !== 5 || isNaN(zipCode)) {
+                alert('Please enter a valid 5-digit zip code.');
+                return; // Stop further execution
+            }
+
+            // If all inputs are valid, show the secret message
+            alert('Congratulations! You found the secret message: Palindrome is fun!');
+        }
+    </script>
+</body>
+</html>
